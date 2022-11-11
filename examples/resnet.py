@@ -176,7 +176,7 @@ if __name__ == '__main__':
 
     parser.add_argument("--root", default=os.environ.get("DATASETS_PATH", "./data"))
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--output-dir")
+    parser.add_argument("--output-dir", default="results")
     parser.add_argument("--pretrained-weights")
     parser.add_argument("--scale-only", action="store_true")
 

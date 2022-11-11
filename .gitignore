@@ -7,3 +7,4 @@ docs/build/
 env/
 .coverage
 data/
+venv/

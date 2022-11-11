@@ -228,16 +228,19 @@ class HomoskedasticGaussian(Gaussian):
             # completely sure if it is a good idea to allow regular pytorch distributions, since they might not have the
             # correct event_dim, so perhaps it's safer to check e.g. if the batch shape is empty and raise an error
             # otherwise
-            precision = PyroSample(prior=dist.TransformedDistribution(scale, transforms.PowerTransform(-2.)))
+            print("setting scale as a distribution")
+            #precision = PyroSample(prior=dist.TransformedDistribution(scale, transforms.PowerTransform(-2.)))
             scale = PyroSample(prior=scale)
         elif isinstance(precision, (dist.Distribution, torchdist.Distribution)):
             scale = PyroSample(prior=dist.TransformedDistribution(precision, transforms.PowerTransform(-0.5)))
             precision = PyroSample(prior=precision)
+            print("setting precision as a distribution")
         else:
             # nothing to do, precision or scale is a number/tensor/parameter
             pass
         self._scale = scale
         self._precision = precision
+        print("scale & precision:", self._scale, self._precision)
 
     @property
     def scale(self):
